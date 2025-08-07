@@ -3,6 +3,8 @@ package window;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +14,9 @@ class MyAction implements ActionListener {
 
 	String msg;
 	
+	public MyAction(String msg) {
+		this.msg = msg;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(msg);
@@ -26,6 +31,7 @@ public class MyFrame extends JFrame {
 	JTextField tf = new JTextField();  // 여기
 	MyFrame2 myFrame2 = new MyFrame2();
 	MyFrame() {
+		
 		Container con = this.getContentPane();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		con.setLayout(null);
@@ -44,6 +50,7 @@ public class MyFrame extends JFrame {
 		this.setVisible(true);
 		
 		btn.addActionListener(new MyAction());
+//		btn.addActionListener(new window.MyAction(tf.getText()));
 		
 		
 		btn2.addActionListener((e) -> myFrame2.setVisible(true));
@@ -57,15 +64,57 @@ public class MyFrame extends JFrame {
 		
 	}
 	
-	class MyFrame2 extends JFrame {
+	class MyFrame2 extends JFrame implements WindowListener {
 		public MyFrame2() {
 			Container con = this.getContentPane();
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			con.setLayout(null);
 			
 			this.setLocation(1300, 400);
 			this.setSize(300, 200);
 			this.setVisible(false);
+		}
+
+		@Override
+		public void windowOpened(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowClosing(WindowEvent e) {
+			this.setVisible(false);
+			
+		}
+
+		@Override
+		public void windowClosed(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowIconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowDeiconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowActivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowDeactivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 
